@@ -18,27 +18,27 @@ if "responses" not in st.session_state:
 questions = [
     {
         "question": "A bag has 4 blue marbles. If you pick one marble without looking, how likely is it that you will pick a black one?",
-        "image": "images/impossible.png",
+        "image": "impossible.png",
         "answer": "impossible"
     },
     {
         "question": "A bag has 3 blue marbles and 1 black marble. If you pick one marble without looking, how likely is it that you will pick a black one?",
-        "image": "images/unlikely.png",
+        "image": "unlikely.png",
         "answer": "unlikely"
     },
     {
         "question": "A bag has 2 blue marbles and 2 black marbles. If you pick one marble without looking, how likely is it that you will pick a black one?",
-        "image": "images/equal.png",
+        "image": "equal.png",
         "answer": "even chance"
     },
     {
         "question": "A bag has 1 blue marble and 3 black marbles. If you pick one marble without looking, how likely is it that you will pick a black one?",
-        "image": "images/likely.png",
+        "image": "likely.png",
         "answer": "likely"
     },
     {
         "question": "A bag has 4 black marbles. If you pick one marble without looking, how likely is it that you will pick a black one?",
-        "image": "images/certain.png",
+        "image": "certain.png",
         "answer": "certain"
     }
 ]
@@ -98,3 +98,4 @@ else:
         st.session_state.score = 0
         st.session_state.responses = []
         st.rerun()
+
