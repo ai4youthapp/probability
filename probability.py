@@ -17,15 +17,15 @@ if "responses" not in st.session_state:
 # -------------------- QUIZ QUESTIONS --------------------
 questions = [
     {"question": "If you select a marble without looking, how likely is it that you will pick a black one?",
-     "image": "images/certain.png", "answer": "certain"},
+     "image": "certain.png", "answer": "certain"},
     {"question": "If you select a marble without looking, how likely is it that you will pick a black one?",
-     "image": "images/impossible.png", "answer": "impossible"},
+     "image": "impossible.png", "answer": "impossible"},
     {"question": "If you select a marble without looking, how likely is it that you will pick a black one?",
-     "image": "images/likely.png", "answer": "likely"},
+     "image": "likely.png", "answer": "likely"},
     {"question": "If you select a marble without looking, how likely is it that you will pick a black one?",
-     "image": "images/probable.png", "answer": "probable"},
+     "image": "probable.png", "answer": "probable"},
     {"question": "If you select a marble without looking, how likely is it that you will pick a black one?",
-     "image": "images/equal.png", "answer": "equal chance"}
+     "image": "equal.png", "answer": "equal chance"}
 ]
 
 # -------------------- QUIZ LOGIC --------------------
@@ -87,3 +87,4 @@ else:
         st.session_state.score = 0
         st.session_state.responses = []
         st.rerun()
+
