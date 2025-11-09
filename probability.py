@@ -12,20 +12,35 @@ if "score" not in st.session_state:
 if "q_no" not in st.session_state:
     st.session_state.q_no = 0
 if "responses" not in st.session_state:
-    st.session_state.responses = []  # store user answers and results
+    st.session_state.responses = []
 
 # -------------------- QUIZ QUESTIONS --------------------
 questions = [
-    {"question": "If you select a marble without looking, how likely is it that you will pick a black one?",
-     "image": "certain.png", "answer": "certain"},
-    {"question": "If you select a marble without looking, how likely is it that you will pick a black one?",
-     "image": "impossible.png", "answer": "impossible"},
-    {"question": "If you select a marble without looking, how likely is it that you will pick a black one?",
-     "image": "likely.png", "answer": "likely"},
-    {"question": "If you select a marble without looking, how likely is it that you will pick a black one?",
-     "image": "probable.png", "answer": "probable"},
-    {"question": "If you select a marble without looking, how likely is it that you will pick a black one?",
-     "image": "equal.png", "answer": "equal chance"}
+    {
+        "question": "A bag has 4 blue marbles. If you pick one marble without looking, how likely is it that you will pick a black one?",
+        "image": "images/impossible.png",
+        "answer": "impossible"
+    },
+    {
+        "question": "A bag has 3 blue marbles and 1 black marble. If you pick one marble without looking, how likely is it that you will pick a black one?",
+        "image": "images/unlikely.png",
+        "answer": "unlikely"
+    },
+    {
+        "question": "A bag has 2 blue marbles and 2 black marbles. If you pick one marble without looking, how likely is it that you will pick a black one?",
+        "image": "images/equal.png",
+        "answer": "even chance"
+    },
+    {
+        "question": "A bag has 1 blue marble and 3 black marbles. If you pick one marble without looking, how likely is it that you will pick a black one?",
+        "image": "images/likely.png",
+        "answer": "likely"
+    },
+    {
+        "question": "A bag has 4 black marbles. If you pick one marble without looking, how likely is it that you will pick a black one?",
+        "image": "images/certain.png",
+        "answer": "certain"
+    }
 ]
 
 # -------------------- QUIZ LOGIC --------------------
@@ -37,10 +52,9 @@ if q_no < total_qs:
     st.image(q["image"], width=400)
     st.subheader(f"Question {q_no + 1} of {total_qs}")
     st.write(q["question"])
-
     st.progress((q_no + 1) / total_qs)
 
-    options = ["certain", "likely", "probable", "unlikely", "impossible", "equal chance"]
+    options = ["impossible", "unlikely", "likely", "certain", "even chance"]
     answer = st.radio("Choose your answer:", options, index=None, horizontal=True)
 
     if st.button("Submit Answer"):
@@ -52,7 +66,6 @@ if q_no < total_qs:
             else:
                 st.error(f"❌ Incorrect. The correct answer is **{q['answer']}**.")
 
-            # Save the response
             st.session_state.responses.append({
                 "question": q["question"],
                 "your_answer": answer,
@@ -69,7 +82,6 @@ else:
     st.balloons()
     st.success(f"🏁 Quiz Completed! Your final score: **{st.session_state.score} / {total_qs}**")
 
-    # --- Show Wrong Answers ---
     wrong_answers = [r for r in st.session_state.responses if r["result"].startswith("Wrong")]
     if wrong_answers:
         st.markdown("### ❌ Review Your Mistakes")
@@ -79,12 +91,10 @@ else:
             st.write(f"Correct answer: ✅ **{r['correct_answer']}**")
             st.divider()
     else:
-        st.markdown("🎉 Amazing! You got everything correct!")
+        st.markdown("🎉 Fantastic! You got everything correct!")
 
-    # --- Restart Option ---
     if st.button("Restart Quiz"):
         st.session_state.q_no = 0
         st.session_state.score = 0
         st.session_state.responses = []
         st.rerun()
-
